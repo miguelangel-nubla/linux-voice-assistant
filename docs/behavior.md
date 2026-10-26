@@ -209,6 +209,7 @@ The *Disable button controls* switch (if the peripheral provides it) lets you lo
 
 - LVA is discovered by Home Assistant via mDNS (ESPHome integration). Several clients can be connected at the same time.
 - **Encryption.** With `--encryption-key` (or `--encryption-key-file`), the connection is encrypted as on ESPHome devices with an API encryption key: Home Assistant asks for the key when adding the device, and clients without it (or with a different one) are refused. Without a key the connection is plaintext, as before.
+- **Identity.** Home Assistant knows the device by its MAC address, which is also in its name (`lva-<mac>`): by default the network interface's. With `--mac-address` it is that one instead, so the device stays the same in Home Assistant when the machine uses another interface, and several instances on one machine get one identity each.
 - When Home Assistant **reconnects** (for example after a restart), settings and entities are kept. Playback is not interrupted as long as at least one client is still connected.
 - When the **last** client disconnects, LVA **stops music and assistant playback** and goes idle. It keeps waiting for Home Assistant to reconnect.
 - Peripherals are told when Home Assistant is connected (`zeroconf` event with status `connected`) and when it is lost (`disconnected`).
